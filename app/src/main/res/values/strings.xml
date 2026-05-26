@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">MyWarsawApp</string>
+    <string name="back_button">Back</string>
+    <string name="restaurant">Restauracje</string>
+    <string name="cofee">Kawiarnie</string>
+    <string name="park">Parki</string>
+    <string name="gallery">Galerie</string>
+    <string name="museum">Muzea</string>
+
+
+    <!-- Restauracje -->
+    <string name="restaurant_1_title">Rozbrat 20</string>
+    <string name="restaurant_1_desc">Elegancka restauracja z polska kuchnia w nowoczesnym wydaniu.</string>
+    <string name="restaurant_2_title">Kieliszki na Proznej</string>
+    <string name="restaurant_2_desc">Wine bar z kuchnia srodziemnomorska i duzym wyborem win.</string>
+    <string name="restaurant_3_title">Stixx Bar and Grill</string>
+    <string name="restaurant_3_desc">Popularne miejsce z grillowanym miesem i swietna atmosfera.</string>
+    <string name="restaurant_4_title">Nolita</string>
+    <string name="restaurant_4_desc">Nowoczesna kuchnia fusion w centrum Warszawy.</string>
+    <string name="restaurant_5_title">Butchery and Wine</string>
+    <string name="restaurant_5_desc">Restauracja dla milosnikow miesa i dobrego wina.</string>
+    <string name="restaurant_6_title">Bibenda</string>
+    <string name="restaurant_6_desc">Wloska restauracja z autentycznymi makaronami i pizza.</string>
+
+    <!-- Kawiarnie -->
+    <string name="coffee_1_title">Kafka</string>
+    <string name="coffee_1_desc">Klimatyczna kawiarnia na Muranowie z dobra kawa.</string>
+    <string name="coffee_2_title">Bulke przez Bibulke</string>
+    <string name="coffee_2_desc">Kultowa kawiarnia z domowymi wypiekami.</string>
+    <string name="coffee_3_title">Relaks Cafe</string>
+    <string name="coffee_3_desc">Hipsterska kawiarnia na Pradze z vintage wystrojem.</string>
+    <string name="coffee_4_title">Charlotte</string>
+    <string name="coffee_4_desc">Francuska kawiarnia z pysznym chlebem i croissantami.</string>
+    <string name="coffee_5_title">Ministerstwo Kawy</string>
+    <string name="coffee_5_desc">Swietna kawa specialty w centrum Warszawy.</string>
+    <string name="coffee_6_title">Stor</string>
+    <string name="coffee_6_desc">Minimalistyczna kawiarnia z najlepszym cold brew w miescie.</string>
+
+    <!-- Parki -->
+    <string name="park_1_title">Lazienki Krolewskie</string>
+    <string name="park_1_desc">Najwiekszy park w centrum z palacem na wodzie.</string>
+    <string name="park_2_title">Park Skaryszewski</string>
+    <string name="park_2_desc">Spokojny park z pieknym jeziorem na Pradze.</string>
+    <string name="park_3_title">Las Kabacki</string>
+    <string name="park_3_desc">Duzy las na poludniu Warszawy idealny na dlugie spacery.</string>
+    <string name="park_4_title">Park Pole Mokotowskie</string>
+    <string name="park_4_desc">Popularne miejsce do biegania i piknikow.</string>
+    <string name="park_5_title">Park Praski</string>
+    <string name="park_5_desc">Klimatyczny park ze zoo i starymi drzewami.</string>
+    <string name="park_6_title">Ogrod Saski</string>
+    <string name="park_6_desc">Najstarszy publiczny ogrod w Warszawie z fontanna.</string>
+
+    <!-- Galerie -->
+    <string name="gallery_1_title">Zacheta</string>
+    <string name="gallery_1_desc">Narodowa Galeria Sztuki z wystawami sztuki wspolczesnej.</string>
+    <string name="gallery_2_title">Galeria Asymetria</string>
+    <string name="gallery_2_desc">Kameralna galeria skupiajaca sie na fotografii artystycznej.</string>
+    <string name="gallery_3_title">Galeria Foksal</string>
+    <string name="gallery_3_desc">Jedna z najstarszych i najbardziej prestizowych galerii w Polsce.</string>
+    <string name="gallery_4_title">CSW Zamek Ujazdowski</string>
+    <string name="gallery_4_desc">Centrum Sztuki Wspolczesnej z eksperymentalnymi wystawami.</string>
+    <string name="gallery_5_title">Galeria Leto</string>
+    <string name="gallery_5_desc">Nowoczesna galeria na Mokotowie promujaca mlodych artystow.</string>
+    <string name="gallery_6_title">Muzeum Sztuki Nowoczesnej</string>
+    <string name="gallery_6_desc">Nowa siedziba nad Wisla z imponujaca kolekcja.</string>
+
+    <!-- Muzea -->
+    <string name="museum_1_title">Muzeum Powstania Warszawskiego</string>
+    <string name="museum_1_desc">Jedno z najlepiej zrobionych muzeow w Polsce.</string>
+    <string name="museum_2_title">POLIN</string>
+    <string name="museum_2_desc">Muzeum Historii Zydow Polskich z niesamowita architektura.</string>
+    <string name="museum_3_title">Muzeum Narodowe</string>
+    <string name="museum_3_desc">Najwieksza kolekcja sztuki w Polsce.</string>
+    <string name="museum_4_title">Muzeum Lazienki Krolewskie</string>
+    <string name="museum_4_desc">Palac z autentycznymi wnetrzami krolewskimi.</string>
+    <string name="museum_5_title">Muzeum Chopina</string>
+    <string name="museum_5_desc">Interaktywne muzeum poswiecone zyciu i muzyce Chopina.</string>
+    <string name="museum_6_title">Muzeum Warszawy</string>
+    <string name="museum_6_desc">Historia miasta od sredniowiecza do wspolczesnosci.</string>
+</resources>
