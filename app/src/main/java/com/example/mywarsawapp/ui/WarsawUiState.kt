@@ -9,12 +9,7 @@ import com.example.mywarsawapp.model.TypeOfPlace
 
 data class WarsawUiState(
     val groupedPlaceList: Map<TypeOfPlace, List<Place>> = emptyMap(),
-    val restaurantPlacesList: List<Place> = emptyList(),
-    val galerryPlacesList: List<Place> = emptyList(),
-    val cofeePlacesList: List<Place> = emptyList(),
-    val parkPlacesList: List<Place> = emptyList(),
-    val museumPlacesList: List<Place> = emptyList(),
     @StringRes val currentTitle: Int = R.string.app_name,
-    val currentCategory: TypeOfPlace? = null,
-    val currentPlace: Place? = null,
+    val currentCategory: TypeOfPlace = TypeOfPlace.RESTAURANT,
+    val currentPlace: Place? = groupedPlaceList.get(TypeOfPlace.RESTAURANT)?.get(0) ?: null,
 )

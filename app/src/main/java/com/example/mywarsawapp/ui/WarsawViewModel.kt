@@ -1,7 +1,5 @@
 package com.example.mywarsawapp.ui
 
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import com.example.mywarsawapp.data.WarsawPlacesDataProvider
 import com.example.mywarsawapp.model.Place
@@ -24,7 +22,7 @@ class WarsawViewModel : ViewModel() {
             )
     }
 
-    fun updateCategory(currentCategory: TypeOfPlace){
+    fun updateCategoryAndTitle(currentCategory: TypeOfPlace){
         _uiState.update {
             it.copy(
                 currentCategory = currentCategory,
@@ -33,7 +31,15 @@ class WarsawViewModel : ViewModel() {
         }
     }
 
-    fun updatePlace(currentPlace: Place){
+    fun updateCategory(currentCategory: TypeOfPlace){
+        _uiState.update {
+            it.copy(
+                currentCategory = currentCategory
+            )
+        }
+    }
+
+    fun updatePlaceAndTitle(currentPlace: Place){
         _uiState.update {
             it.copy(
                 currentPlace = currentPlace,
@@ -41,4 +47,12 @@ class WarsawViewModel : ViewModel() {
             )
         }
     }
+    fun updatePlace(currentPlace: Place){
+        _uiState.update {
+            it.copy(
+                currentPlace = currentPlace
+            )
+        }
+    }
+
 }

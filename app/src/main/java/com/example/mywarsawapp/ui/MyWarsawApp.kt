@@ -7,18 +7,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Card
@@ -29,6 +25,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -36,7 +33,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
-import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -46,7 +42,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHost
 import com.example.mywarsawapp.R
 import com.example.mywarsawapp.data.WarsawPlacesDataProvider
 import com.example.mywarsawapp.model.Place
@@ -56,10 +51,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import java.lang.reflect.Type
 
 @Composable
 fun MyWarsawApp(
+    windowSize: WindowWidthSizeClass,
     navController: NavHostController = rememberNavController(),
     modifier: Modifier = Modifier
 ) {
@@ -76,32 +71,36 @@ fun MyWarsawApp(
         }
     ) { innerPadding ->
 
-        NavHost(
-            navController = navController,
-            startDestination = WarsawScreen.CATEGORIES.name,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        ) {
-            composable(route = WarsawScreen.CATEGORIES.name) {
-                CategoriesList(
-                    onClick = {
-                        navController.navigate(WarsawScreen.PLACES.name)
-                        viewModel.updateCategory(it)
-                    })
+        if(windowSize == WindowWidthSizeClass.Compact || windowSize == WindowWidthSizeClass.Medium){
+            NavHost(
+                navController = navController,
+                startDestination = WarsawScreen.CATEGORIES.name,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+            ) {
+                composable(route = WarsawScreen.CATEGORIES.name) {
+                    CategoriesList(
+                        onClick = {
+                            navController.navigate(WarsawScreen.PLACES.name)
+                            viewModel.updateCategoryAndTitle(it)
+                        })
+                }
+                composable(route = WarsawScreen.PLACES.name) {
+                    PlacesList(
+                        uiState.groupedPlaceList[uiState.currentCategory] ?: emptyList(),
+                        onClick = {
+                            navController.navigate(WarsawScreen.DESCRIPTION.name)
+                            viewModel.updatePlaceAndTitle(it)
+                        }
+                    )
+                }
+                composable(route = WarsawScreen.DESCRIPTION.name) {
+                    DescriptionOfPlace(uiState.currentPlace!!)
+                }
             }
-            composable(route = WarsawScreen.PLACES.name){
-                PlacesList(
-                    uiState.groupedPlaceList[uiState.currentCategory]?: emptyList(),
-                    onClick = {
-                        navController.navigate(WarsawScreen.DESCRIPTION.name)
-                        viewModel.updatePlace(it)
-                    }
-                )
-            }
-            composable(route = WarsawScreen.DESCRIPTION.name) {
-                DescriptionOfPlace(uiState.currentPlace!!)
-            }
+        } else{
+            ExpandedScreen(viewModel, uiState, innerPadding)
         }
     }
 }
@@ -134,6 +133,40 @@ fun WarsawAppBar(
         }
 
     )
+}
+
+@Composable
+fun ExpandedScreen(
+    viewModel: WarsawViewModel,
+    uiState: WarsawUiState,
+    paddingValues: PaddingValues,
+    modifier: Modifier = Modifier
+) {
+    Row(modifier = modifier) {
+        CategoriesList(
+            onClick = {
+                viewModel.updateCategory(it)
+            },
+            modifier = Modifier
+                .weight(2f)
+                .padding(paddingValues)
+                .padding(end = 8.dp, start = 8.dp)
+        )
+        PlacesList(
+            uiState.groupedPlaceList[uiState.currentCategory] ?: emptyList(),
+            onClick = { (viewModel.updatePlace(it)) },
+            modifier = Modifier
+                .weight(2f)
+                .padding(paddingValues)
+                .padding(end = 8.dp)
+        )
+        DescriptionOfPlace(
+            uiState.currentPlace!!,
+            modifier = Modifier
+                .weight(3f)
+                .padding(paddingValues)
+        )
+    }
 }
 
 @Composable
@@ -173,21 +206,23 @@ fun CategoriesList(
 }
 
 @Composable
-fun DescriptionOfPlace(place: Place) {
-    Column() {
+fun DescriptionOfPlace(place: Place, modifier: Modifier = Modifier) {
+    Column(modifier = modifier) {
         Image(
             painter = painterResource(place.type.imageRes),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
+                .weight(1f)
                 .clip(RoundedCornerShape(dimensionResource(R.dimen.card_corner_radius))),
             contentScale = ContentScale.Crop,
         )
         Text(
             text = stringResource(place.description),
             modifier = Modifier
-                .padding(8.dp),
+                .padding(8.dp)
+                .weight(1f),
             textAlign = TextAlign.Justify
         )
     }
@@ -274,15 +309,6 @@ fun checkPlaceCard() {
 @Composable
 fun checkTypeOfPlaceCard() {
     PlaceCard(TypeOfPlace.COFEE, onClick = {})
-}
-
-//@Preview
-@Composable
-fun checkListOfPlace() {
-    val viewModel: WarsawViewModel = viewModel()
-    val uiState by viewModel.uiState.collectAsState()
-
-    PlacesList(uiState.cofeePlacesList, onClick = {})
 }
 
 @Preview
